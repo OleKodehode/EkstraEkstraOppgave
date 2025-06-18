@@ -1,0 +1,172 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --checkbox-border-color: #737473;
+  --checkbox-checked-color: #ffc300;
+  --checkbox-hover-color: #edf2f4;
+  --background_color: #edf2f4;
+  --article_color_even: #003566;
+  --article_color_odd: #001d3d;
+  --shadow_color: #332828;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+body {
+  width: 100svw;
+  max-width: 100svw;
+  min-height: 100svh;
+  overflow-x: hidden; /* hide horizontal scrollbar */
+  background-color: var(--background_color);
+  padding-top: 5svh;
+}
+
+main {
+  max-width: 80svw;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2svh;
+  margin-left: 10svw;
+}
+
+article {
+  width: 100%;
+  min-height: 15svh;
+  max-height: 80svh;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  color: var(--background_color);
+  border-radius: 40px;
+  padding: 0 5%;
+  gap: 6svw;
+  box-shadow: 5px 5px 5px var(--shadow_color);
+  transition: box-shadow 0.2s;
+}
+
+article:nth-child(even) {
+  background-color: var(--article_color_even);
+}
+
+article:nth-child(odd) {
+  background-color: var(--article_color_odd);
+}
+
+article:hover {
+  box-shadow: 0 0 10px var(--shadow_color);
+  transition: box-shadow 0.2s;
+}
+
+article > p {
+  font-size: 28px;
+}
+
+input[type="checkbox"] {
+  height: 60px;
+  width: 60px;
+  appearance: none;
+  background-color: transparent;
+  outline: none;
+  border: 2px solid var(--checkbox-border-color);
+  border-radius: 50%;
+  transition: outline 0.1s;
+}
+
+input[type="checkbox"]:checked {
+  background-size: cover;
+}
+
+input[type="checkbox"]:not(:disabled):checked {
+  border-color: var(--checkbox-checked-color);
+  /* Must change the hex code in fill in the line below as well: %23 is # */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" viewBox="0 0 32 32" xml:space="preserve"><path style="fill: %23ffc300" d="M11.941,28.877l-11.941-11.942l5.695-5.696l6.246,6.246l14.364-14.364L32,8.818"/></svg>');
+}
+
+/* @Media query slik at style bare brukes på platformer hvor hover funker aka desktop/laptop */
+@media (hover: hover) {
+  input[type="checkbox"]:not(:disabled):hover {
+    background-color: var(--checkbox-hover-color);
+    outline: 6px solid var(--checkbox-hover-color);
+    transform: scale(1.05);
+  }
+}
+
+/*
+<div class="checkbox-wrapper-31">
+  <input type="checkbox"/>
+  <svg viewBox="0 0 35.6 35.6">
+    <circle class="background" cx="17.8" cy="17.8" r="17.8"></circle>
+    <circle class="stroke" cx="17.8" cy="17.8" r="14.37"></circle>
+    <polyline class="check" points="11.78 18.12 15.55 22.23 25.17 12.87"></polyline>
+  </svg>
+</div>
+
+<style>
+  .checkbox-wrapper-31:hover .check {
+    stroke-dashoffset: 0;
+  }
+
+  .checkbox-wrapper-31 {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+  }
+  .checkbox-wrapper-31 .background {
+    fill: #ccc;
+    transition: ease all 0.6s;
+    -webkit-transition: ease all 0.6s;
+  }
+  .checkbox-wrapper-31 .stroke {
+    fill: none;
+    stroke: #fff;
+    stroke-miterlimit: 10;
+    stroke-width: 2px;
+    stroke-dashoffset: 100;
+    stroke-dasharray: 100;
+    transition: ease all 0.6s;
+    -webkit-transition: ease all 0.6s;
+  }
+  .checkbox-wrapper-31 .check {
+    fill: none;
+    stroke: #fff;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 2px;
+    stroke-dashoffset: 22;
+    stroke-dasharray: 22;
+    transition: ease all 0.6s;
+    -webkit-transition: ease all 0.6s;
+  }
+  .checkbox-wrapper-31 input[type=checkbox] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    margin: 0;
+    opacity: 0;
+    -appearance: none;
+    -webkit-appearance: none;
+  }
+  .checkbox-wrapper-31 input[type=checkbox]:hover {
+    cursor: pointer;
+  }
+  .checkbox-wrapper-31 input[type=checkbox]:checked + svg .background {
+    fill: #6cbe45;
+  }
+  .checkbox-wrapper-31 input[type=checkbox]:checked + svg .stroke {
+    stroke-dashoffset: 0;
+  }
+  .checkbox-wrapper-31 input[type=checkbox]:checked + svg .check {
+    stroke-dashoffset: 0;
+  }
+</style>
+
+ */
