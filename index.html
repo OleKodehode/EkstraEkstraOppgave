@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>todo test</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="todo.js"></script>
+    <script src="dom-manipulation.js"></script>
+  </head>
+  <body>
+    <script>
+      // This assignment uses fetching from an external API, and DOM manipulation.
+      // The API is https://jsonplaceholder.typicode.com/todos
+      // The API returns a list of todo-entries.
+      // The todo-entries have the following properties:
+      // - id: number
+      // - title: string
+      // - completed: boolean
+      // - userId: number
+      //
+      // Available functions:
+      // - createAndAppendElement(parent, tag, attributes, children)
+      // - clearBodyElement()
+      // - todoList.fetchTodos()
+      // - todoList.todos
+      //
+      // If you are unsure of something, please ask!
+
+      // First, let's clear the body element
+      clearBodyElement();
+
+      // Then, let's fetch the todos
+      todoList
+        .fetchTodos()
+        .then((todos) => {
+          const body = document.body;
+          const main = document.createElement("main");
+          body.appendChild(main);
+
+          // For every todo-entry, we do something
+          for (const todo of todos) {
+            console.log(todo, todo.id, todo.title, todo.completed, todo.userId);
+            // ... Add the todo-entry to the DOM here!
+            // Create an article container to house the Title and Checkbox for whether it's completed or not
+            const todo_article = document.createElement("article");
+
+            // set the class of the container based on the userID and whether it's a task that is completed
+            todo_article.className = `userID-${todo.userId}`;
+
+            // The ID of the todo is unique, so perfect usecase for ID.
+            todo_article.id = "taskID-" + todo.id;
+
+            //Create and append a checkbox to the container
+            const checkbox = document.createElement("input");
+            checkbox.setAttribute("type", "checkbox");
+            if (todo.completed) {
+              checkbox.setAttribute("checked", true);
+            }
+            console.log(checkbox);
+            todo_article.appendChild(checkbox);
+
+            // Creation of the paragraph element and adding the text to the element.
+            const task_text = document.createElement("p");
+            task_text.innerText = todo.title;
+
+            //append the p element to the article container
+            todo_article.appendChild(task_text);
+
+            console.log(todo_article);
+            console.log(
+              `Article container classes: ${todo_article.className} / ID: ${todo_article.id} / Text: ${task_text.innerText}`
+            );
+            main.appendChild(todo_article);
+          }
+        })
+        // If there is an error, we log it and set the todos to null
+        .catch((error) => {
+          console.error("Error fetching todos:", error);
+          todoList.todos = null;
+        })
+        .finally(() => {
+          // If the todos are null, we log a message
+          if (todoList.todos === null) {
+            console.log("No todos found");
+            // Add some user-friendly feedback to the DOM.
+            const feedbackElement = createAndAppendElement(
+              document.body,
+              "p",
+              {
+                class: "feedback",
+                id: "feedback",
+              },
+              ["No todos found"]
+            );
+          }
+        });
+    </script>
+  </body>
+</html>
