@@ -20,7 +20,7 @@ function clearFilter() {
 function populateArticles(userId = undefined) {
   // Call on todo.js's function to populate the main_container
   todoList
-    .fetchTodos(userId ? userId : undefined)
+    .fetchTodos(userId)
     .then((todos) => {
       for (const todo of todos) {
         // ... Add the todo-entry to the DOM here!
