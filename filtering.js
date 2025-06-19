@@ -6,9 +6,8 @@ function filterResult() {
 }
 
 function clearFilter() {
-  const userid_box = document.getElementById("userid_box");
+  document.getElementById("userid_box").value = "";
 
-  userid_box.value = "";
   clearMain();
   populateArticles();
 }
@@ -33,7 +32,7 @@ function populateArticles(userId = undefined) {
 
         // Use the utility script to create an article container for the todo item
         // and append it to main
-        const todo_article = createAndAppendElement(
+        createAndAppendElement(
           main_container,
           "article",
           {
@@ -54,7 +53,7 @@ function populateArticles(userId = undefined) {
       if (todoList.todos === null) {
         console.log("No todos found");
         // Add some user-friendly feedback to the DOM.
-        const feedbackElement = createAndAppendElement(
+        createAndAppendElement(
           document.body,
           "p",
           {
