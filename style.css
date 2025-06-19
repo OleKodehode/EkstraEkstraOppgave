@@ -22,6 +22,9 @@ body {
   overflow-x: hidden; /* hide horizontal scrollbar */
   background-color: var(--background_color);
   padding-top: 5svh;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
 }
 
 main {
@@ -95,4 +98,20 @@ input[type="checkbox"]:not(:disabled):checked {
     outline: 6px solid var(--checkbox-hover-color);
     transform: scale(1.05);
   }
+}
+
+#heading {
+  height: 10svh;
+  width: 100%;
+  text-align: center;
+  color: var(--article_color_odd);
+}
+
+#filter_section {
+  height: 20svh;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 5svh;
 }

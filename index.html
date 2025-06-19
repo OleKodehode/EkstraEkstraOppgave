@@ -35,9 +35,8 @@
         .fetchTodos()
         .then((todos) => {
           // creating and appending without the utility script
-          const body = document.body;
           const main = document.createElement("main");
-          body.appendChild(main);
+          document.body.appendChild(main);
 
           // For every todo-entry, we do something
           for (const todo of todos) {
@@ -53,7 +52,8 @@
             const task_text = document.createElement("p");
             task_text.innerText = todo.title;
 
-            // Use the utility script to create an article container for the todo item and append it to main
+            // Use the utility script to create an article container for the todo item
+            // and append it to main
             const todo_article = createAndAppendElement(
               main,
               "article",
@@ -86,6 +86,19 @@
             );
           }
         });
+
+      const heading_title = document.createElement("h1");
+      heading_title.innerText = "TODO List API Assignment";
+      createAndAppendElement(document.body, "section", { id: "heading" }, [
+        heading_title,
+      ]);
+
+      createAndAppendElement(
+        document.body,
+        "section",
+        { id: "filter_section" },
+        []
+      );
     </script>
   </body>
 </html>
