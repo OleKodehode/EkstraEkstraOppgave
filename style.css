@@ -143,3 +143,13 @@ form > button {
   font-style: italic;
   cursor: pointer;
 }
+
+form > button:hover {
+  box-shadow: 0 0 5px var(--article_color_odd);
+  transition: box-shadow 0.2s;
+}
+
+form > button:active {
+  box-shadow: inset 0 0 10px var(--background_color);
+  transition: box-shadow 0.2s;
+}
