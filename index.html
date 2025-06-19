@@ -124,15 +124,16 @@
       clear_btn.setAttribute("type", "button");
       clear_btn.innerText = "Clear Filter";
 
-      console.log(filter_btn);
+      // Creation of section for filter
       createAndAppendElement(
         document.body,
         "section",
         { id: "filter_section" },
         []
       );
+
       const filter_section = document.getElementById("filter_section");
-      console.log(filter_section);
+      // Creation of Form and appending all the child elements
       createAndAppendElement(filter_section, "form", { id: "filter_form " }, [
         label_userid,
         userid_search,
