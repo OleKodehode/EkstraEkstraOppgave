@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css" />
     <script src="todo.js"></script>
     <script src="dom-manipulation.js"></script>
+    <script src="./filtering.js"></script>
   </head>
   <body>
     <script>
@@ -36,6 +37,7 @@
         .then((todos) => {
           // creating and appending without the utility script
           const main = document.createElement("main");
+          main.setAttribute("id", "main_container");
           document.body.appendChild(main);
 
           // For every todo-entry, we do something
@@ -94,27 +96,20 @@
       ]);
       // Setup of all elements needed for filter
       const label_userid = document.createElement("label");
-      const label_taskid = document.createElement("label");
       const userid_search = document.createElement("input");
-      const taskid_search = document.createElement("input");
       const filter_btn = document.createElement("button");
       const clear_btn = document.createElement("button");
 
       // Setting attributes
-      label_userid.setAttribute("for", "userid_search");
+      label_userid.setAttribute("for", "userid_searchbox");
       label_userid.innerText = "User ID: ";
-      label_taskid.setAttribute("for", "taskid_search");
-      label_taskid.innerText = "Task ID: ";
 
+      userid_search.setAttribute("name", "userid_searchbox");
       userid_search.setAttribute("placeholder", "1-10");
       userid_search.setAttribute("min", 1);
       userid_search.setAttribute("max", 10);
       userid_search.setAttribute("type", "number");
-
-      taskid_search.setAttribute("placeholder", "1-200");
-      taskid_search.setAttribute("min", 1);
-      taskid_search.setAttribute("max", 200);
-      taskid_search.setAttribute("type", "number");
+      userid_search.setAttribute("id", "userid_box");
 
       filter_btn.setAttribute("onclick", "filterResult()");
       filter_btn.setAttribute("type", "button");
@@ -137,8 +132,6 @@
       createAndAppendElement(filter_section, "form", { id: "filter_form " }, [
         label_userid,
         userid_search,
-        label_taskid,
-        taskid_search,
         filter_btn,
         clear_btn,
       ]);
