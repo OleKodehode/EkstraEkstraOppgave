@@ -92,13 +92,55 @@
       createAndAppendElement(document.body, "section", { id: "heading" }, [
         heading_title,
       ]);
+      // Setup of all elements needed for filter
+      const label_userid = document.createElement("label");
+      const label_taskid = document.createElement("label");
+      const userid_search = document.createElement("input");
+      const taskid_search = document.createElement("input");
+      const filter_btn = document.createElement("button");
+      const clear_btn = document.createElement("button");
 
+      // Setting attributes
+      label_userid.setAttribute("for", "userid_search");
+      label_userid.innerText = "User ID: ";
+      label_taskid.setAttribute("for", "taskid_search");
+      label_taskid.innerText = "Task ID: ";
+
+      userid_search.setAttribute("placeholder", "1-10");
+      userid_search.setAttribute("min", 1);
+      userid_search.setAttribute("max", 10);
+      userid_search.setAttribute("type", "number");
+
+      taskid_search.setAttribute("placeholder", "1-200");
+      taskid_search.setAttribute("min", 1);
+      taskid_search.setAttribute("max", 200);
+      taskid_search.setAttribute("type", "number");
+
+      filter_btn.setAttribute("onclick", "filterResult()");
+      filter_btn.setAttribute("type", "button");
+      filter_btn.innerText = "Filter Result";
+
+      clear_btn.setAttribute("onclick", "clearFilter()");
+      clear_btn.setAttribute("type", "button");
+      clear_btn.innerText = "Clear Filter";
+
+      console.log(filter_btn);
       createAndAppendElement(
         document.body,
         "section",
         { id: "filter_section" },
         []
       );
+      const filter_section = document.getElementById("filter_section");
+      console.log(filter_section);
+      createAndAppendElement(filter_section, "form", { id: "filter_form " }, [
+        label_userid,
+        userid_search,
+        label_taskid,
+        taskid_search,
+        filter_btn,
+        clear_btn,
+      ]);
     </script>
   </body>
 </html>
