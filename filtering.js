@@ -1,6 +1,7 @@
 function filterResult() {
   const userid_value = document.getElementById("userid_box").value;
 
+  clearMain();
   populateArticles(userid_value);
 }
 
@@ -8,16 +9,12 @@ function clearFilter() {
   const userid_box = document.getElementById("userid_box");
 
   userid_box.value = "";
+  clearMain();
   populateArticles();
 }
 
 function populateArticles(userId = undefined) {
-  // clear main container of items
-  const main_container = document.getElementById("main_container");
-  while (main_container.firstChild) {
-    main_container.removeChild(main_container.firstChild);
-  }
-
+  // Call on todo.js's function to populate the main_container
   todoList
     .fetchTodos(userId ? userId : undefined)
     .then((todos) => {
@@ -68,4 +65,12 @@ function populateArticles(userId = undefined) {
         );
       }
     });
+}
+
+function clearMain() {
+  // clear main container of items
+  const main_container = document.getElementById("main_container");
+  while (main_container.firstChild) {
+    main_container.removeChild(main_container.firstChild);
+  }
 }

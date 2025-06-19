@@ -31,76 +31,21 @@
       // First, let's clear the body element
       clearBodyElement();
 
-      // Then, let's fetch the todos
-      todoList
-        .fetchTodos()
-        .then((todos) => {
-          // creating and appending without the utility script
-          const main = document.createElement("main");
-          main.setAttribute("id", "main_container");
-          document.body.appendChild(main);
-
-          // For every todo-entry, we do something
-          for (const todo of todos) {
-            // ... Add the todo-entry to the DOM here!
-            // Create Checkbox - Add checked if task is completed
-            const checkbox = document.createElement("input");
-            checkbox.setAttribute("type", "checkbox");
-            if (todo.completed) {
-              checkbox.setAttribute("checked", true);
-            }
-
-            // Create the paragraph for the task text
-            const task_text = document.createElement("p");
-            task_text.innerText = todo.title;
-
-            // Use the utility script to create an article container for the todo item
-            // and append it to main
-            const todo_article = createAndAppendElement(
-              main,
-              "article",
-              {
-                class: `userID-${todo.userId}`,
-                id: `taskID-${todo.id}`,
-              },
-              [checkbox, task_text]
-            );
-          }
-        })
-        // If there is an error, we log it and set the todos to null
-        .catch((error) => {
-          console.error("Error fetching todos:", error);
-          todoList.todos = null;
-        })
-        .finally(() => {
-          // If the todos are null, we log a message
-          if (todoList.todos === null) {
-            console.log("No todos found");
-            // Add some user-friendly feedback to the DOM.
-            const feedbackElement = createAndAppendElement(
-              document.body,
-              "p",
-              {
-                class: "feedback",
-                id: "feedback",
-              },
-              ["No todos found"]
-            );
-          }
-        });
-
+      // Populate the site -> First heading and title, then filter section, then main section
+      // Elements for heading
       const heading_title = document.createElement("h1");
       heading_title.innerText = "TODO List API Assignment";
       createAndAppendElement(document.body, "section", { id: "heading" }, [
         heading_title,
       ]);
+
       // Setup of all elements needed for filter
       const label_userid = document.createElement("label");
       const userid_search = document.createElement("input");
       const filter_btn = document.createElement("button");
       const clear_btn = document.createElement("button");
 
-      // Setting attributes
+      // Setting attributes for the filter elements
       label_userid.setAttribute("for", "userid_searchbox");
       label_userid.innerText = "User ID: ";
 
@@ -135,6 +80,15 @@
         filter_btn,
         clear_btn,
       ]);
+
+      // Creation of Main Container
+      const main = document.createElement("main");
+      main.setAttribute("id", "main_container");
+      document.body.appendChild(main);
+
+      // Calls on a function in filter.js
+      // function calls on todo.js to fetch data and populates the main container
+      populateArticles();
     </script>
   </body>
 </html>
