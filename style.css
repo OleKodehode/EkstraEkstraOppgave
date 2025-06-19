@@ -35,6 +35,7 @@ main {
   align-items: center;
   justify-content: center;
   gap: 2svh;
+  margin-bottom: 5svh;
 }
 
 article {
