@@ -78,6 +78,7 @@ input[type="checkbox"] {
   border: 2px solid var(--checkbox-border-color);
   border-radius: 50%;
   transition: outline 0.1s;
+  flex-shrink: 0;
 }
 
 input[type="checkbox"]:checked {
