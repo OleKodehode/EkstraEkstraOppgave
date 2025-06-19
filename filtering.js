@@ -1,6 +1,11 @@
 function filterResult() {
   const userid_value = document.getElementById("userid_box").value;
 
+  // If the userid search box is empty then just return out of the function.
+  if (!userid_value) {
+    return;
+  }
+
   clearMain();
   populateArticles(userid_value);
 }
