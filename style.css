@@ -35,11 +35,10 @@ main {
   align-items: center;
   justify-content: center;
   gap: 2svh;
-  margin-left: 10svw;
 }
 
 article {
-  width: 100%;
+  width: 75svw;
   min-height: 15svh;
   max-height: 80svh;
   display: flex;
